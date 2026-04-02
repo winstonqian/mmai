@@ -1,19 +1,18 @@
 # MMAI 2026 - Winston Qian
 
-Welcome to my site for Modeling Multimodal AI 2026.
-This repo contains my homework assignments and explorations throughout the class.
+Welcome to my site for Modeling Multimodal AI 2026 (6.S985).
+This repo contains my homework assignments, explorations, and progress on the final project.
 
 ## Bio
 <img src="./imgs/profile.png" style="width:200px;">
 
-Hi, I'm Winston Qian. This portfolio showcases my homework and final project explorations in vision-language models, fusion representations, and multimodal synthesis for Spring 2026.
+Hi, I'm Winston Qian. This portfolio showcases my homework and final project explorations in vision-language models, multimodal alignment, and brain-to-vision decoding for Spring 2026.
 
 ## Final Project
-**Final Project — Vision vs. Protocol Effects in EEG2Video**
-[GitHub Repository: eeg2video-audit](https://github.com/hnxnq7/eeg2video-audit)
+**Vision vs. Protocol Effects in EEG2Video**
+- [Project Code Folder](./final-project/) (Code to be transferred here)
 
-**Task-Aware Temporal Attention + Temporal EEG–Video Alignment on SEED-DV**
-We investigate whether current EEG-to-video models capture genuine dynamic visual perception or merely exploit experimental sequence artifacts. By introducing task-aware temporal attention and a chunk-level contrastive alignment objective, we establish an interpretable, artifact-resistant baseline for interpreting dynamic brain-to-vision decoding.
+**Summary:** We investigate whether current EEG-to-video models capture genuine dynamic visual perception or merely exploit experimental sequence artifacts. By introducing task-aware temporal attention and a chunk-level contrastive alignment objective, we establish an interpretable, artifact-resistant baseline for interpreting dynamic brain-to-vision decoding.
 
 ## Homework
 - [Homework 1 - Dataset: Multimodal TVQA Preprocessing](./homework/homework-1/)
@@ -24,4 +23,3 @@ We investigate whether current EEG-to-video models capture genuine dynamic visua
 
 ## Website License
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-
