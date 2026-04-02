@@ -17,8 +17,10 @@ Below are two visualizations of the pre-processed multimodal data:
 
 **1. Multimodal Data Distribution (t-SNE)**
 ![t-SNE Plot](imgs/t-sne.png)
+
 This t-SNE plot projects the multimodal embeddings (subtitle TF-IDF and visual concept TF-IDF) into a 2D space. The data forms distinct clusters by TV show indicating that the features successfully capture show-specific semantic and visual patterns.
 
 **2. Non-zero Input Feature Distribution**
 ![Non-zero Input Distribution](imgs/non-zero%20input.png)
+
 This histogram visualizes the distribution of the non-zero input features. It confirms the high sparsity of the TF-IDF features used for the multimodal representations.
