@@ -326,7 +326,7 @@
     
             <div class="content has-text-justified">
               <p>
-                Hi, I'm Winston Qian. I am a student taking 6.S985: Modeling Multimodal AI in the Spring of 2026.
+                Hi, I'm Winston Qian. I'm a student taking 6.S985: Modeling Multimodal AI in Spring 2026.
                 This portfolio showcases my homework and final project explorations in vision-language models, multimodal alignment, and brain-to-vision decoding.
               </p>
             </div>
@@ -357,7 +357,7 @@
           <h2 class="title is-3 has-text-centered">Final Project — Vision vs. Protocol Effects in EEG2Video</h2>
           
           <div class="has-text-centered" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-            <a href="https://github.com/winstonqian/mmai/tree/master/final-project/EEG2Video" target="_blank" rel="noopener" class="button is-dark is-medium is-rounded">
+            <a href="https://github.com/winstonqian/EEG2Video" target="_blank" rel="noopener" class="button is-dark is-medium is-rounded">
               <span class="icon"><i class="fab fa-github"></i></span>
             </a>
           </div>
@@ -373,16 +373,13 @@
             <hr style="margin: 2.5rem 0;">
             
             <h3 class="title is-4 has-text-centered">Midterm Update: A Living Lab Notebook</h3>
-            <p class="has-text-centered is-italic" style="color: #666;">
-              "A well-crafted repository tells the story of how you think, what you’ve explored, and how your ideas evolve."
-            </p>
             <p>
               In our journey to build a robust EEG-to-Video generative pipeline, we chose to rigorously audit our semantic classification baselines before scaling up. Here is the evolution of our methodology so far:
             </p>
             <ul>
               <li style="margin-bottom: 0.5rem;"><strong>1. Sequence Shortcut Audit:</strong> We hypothesized that multi-clip protocols might allow models to 'cheat' by decoding subject anticipation over the course of a session. By uniquely stratifying Top-1 decoding accuracy strictly by clip index (1 through 5), we proved performance does <em>not</em> increase monotonically. Our baseline is genuinely decoding stimuli perception, not protocol artifacts.</li>
               <li style="margin-bottom: 0.5rem;"><strong>2. Preprocessing Data Leakage:</strong> We strictly audited train/test normalization leakage in standard pipelines. Sealing the leak caused an incredible <strong>13x variance drop in PSD features</strong>, but actually increased DE feature variance. This proved that strict leakage-free normalization impacts frequency and entropy domains entirely differently.</li>
-              <li><strong>3. Architectural Trade-offs:</strong> We prototyped a custom $O(T^2)$ Temporal Attention model on raw 200Hz ($T=400$) signals. The massive computational bottleneck taught us a pragmatic engineering lesson: standard CNN temporal filters offer a vastly superior compute-to-accuracy ratio. Moving forward, rather than computationally heavy self-attention, we are pivoting to <strong>chunk-level contrastive alignment</strong> in a 1024-d latent space to pipe EEG embeddings directly into Stable Diffusion.</li>
+              <li><strong>3. Architectural Trade-offs:</strong> We prototyped a custom O(T^2) Temporal Attention model on raw 200Hz (T=400) signals. The massive computational bottleneck taught us a pragmatic engineering lesson: standard CNN temporal filters offer a vastly superior compute-to-accuracy ratio. Moving forward, rather than computationally heavy self-attention, we are pivoting to <strong>chunk-level contrastive alignment</strong> in a 1024-d latent space to pipe EEG embeddings directly into Stable Diffusion.</li>
             </ul>
           </div>
         </div>
