@@ -241,7 +241,7 @@
               </div>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Modeling Multimodal AI 2026<br>Homework, final project, and random thoughts</span>
+                <span class="author-block">Modeling Multimodal AI 2026<br>Homework, final project, and the thinking behind it all</span>
               </div>
 
               <div class="has-text-centered">
@@ -354,33 +354,216 @@
     <section class="hero teaser" id="final-project">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <h2 class="title is-3 has-text-centered">Final Project — Vision vs. Protocol Effects in EEG2Video</h2>
-          
-          <div class="has-text-centered" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+
+          <h2 class="title is-3 has-text-centered">Final Project</h2>
+          <p class="is-size-5 has-text-centered" style="margin-bottom:0.5rem;">
+            <strong>NeuroCLIP: Action Semantics Governs EEG Concept Decodability</strong>
+          </p>
+          <p class="has-text-centered" style="opacity:0.7; margin-bottom:1.5rem;">
+            Winston Qian &nbsp;·&nbsp; Rachel Li &nbsp;·&nbsp; Emma Wang &nbsp;·&nbsp; MIT · Spring 2026
+          </p>
+
+          <div class="has-text-centered" style="margin-bottom: 2rem;">
             <a href="https://github.com/winstonqian/EEG2Video" target="_blank" rel="noopener" class="button is-dark is-medium is-rounded">
               <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code &amp; Figures</span>
             </a>
           </div>
 
-          <div class="content has-text-justified" style="max-width: 800px; margin: 0 auto;">
-            <p class="is-size-5 has-text-centered">
-              <strong>Task-Aware Temporal Attention + Temporal EEG–Video Alignment on SEED-DV</strong>
-            </p>
-            <p class="has-text-centered">
-              We investigate whether current EEG-to-video models capture genuine dynamic visual perception or merely exploit experimental sequence artifacts. By introducing <strong>task-aware temporal attention</strong> and a <strong>chunk-level contrastive alignment</strong> objective, we establish an interpretable, artifact-resistant baseline for brain-to-vision decoding.
-            </p>
-            
-            <hr style="margin: 2.5rem 0;">
-            
-            <h3 class="title is-4 has-text-centered">Midterm Update: A Living Lab Notebook</h3>
+          <!-- Key stats strip -->
+          <div class="stats-strip" style="max-width:720px; margin: 0 auto 2.5rem;">
+            <div class="stat-card">
+              <div class="stat-label">System</div>
+              <div class="stat-value">NeuroCLIP (zero-shot)</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Top-1 R@1</div>
+              <div class="stat-value">4.60% <span style="font-weight:400;font-size:.85rem;opacity:.7">vs 2.5% chance</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Core Finding</div>
+              <div class="stat-value">6.8% vs 3.8%***</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Analyses run</div>
+              <div class="stat-value">47 figures · 45 scripts</div>
+            </div>
+          </div>
+
+          <div class="content" style="max-width: 800px; margin: 0 auto;">
+
+            <!-- THESIS -->
+            <div class="note-card" style="margin-bottom:2rem;">
+              <p style="margin:0;">
+                <strong>Thesis:</strong> In contrastive EEG-to-CLIP retrieval, concept decodability is not determined by CLIP embedding geometry — it is determined by <em>action semantic content</em>. Concepts depicting dynamic human activity are decoded with ~80% higher accuracy than passive object scenes (6.8% vs. 3.8%, p&nbsp;&lt;&nbsp;10⁻⁷), consistently across all subjects and recording sessions. This is not a raw EEG amplitude effect — it is a dataset-agnostic principle for designing more decodable BCI stimulus sets.
+              </p>
+            </div>
+
+            <!-- PHASE 1: BASELINE AUDIT -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">
+              <span style="opacity:0.5; font-weight:400; font-size:0.9rem; display:block; margin-bottom:0.2rem;">Phase 1 — Baseline Audit</span>
+              First, We Made Sure the Baseline Was Real
+            </h3>
             <p>
-              In our journey to build a robust EEG-to-Video generative pipeline, we chose to rigorously audit our semantic classification baselines before scaling up. Here is the evolution of our methodology so far:
+              Before building anything new, we had a nagging question: <em>does EEG2Video actually decode visual perception, or is it decoding experimental protocol artifacts?</em> SEED-DV presents concepts in structured 5-clip runs — a cue followed by five consecutive clips of the same concept. That creates a real risk that models learn run-position patterns (anticipation, adaptation) rather than clip content.
             </p>
-            <ul>
-              <li style="margin-bottom: 0.5rem;"><strong>1. Sequence Shortcut Audit:</strong> We hypothesized that multi-clip protocols might allow models to 'cheat' by decoding subject anticipation over the course of a session. By adopting a strict <strong>within-subject evaluation paradigm</strong> and stratifying Top-1 decoding accuracy uniquely by clip index (1 through 5), we proved performance does <em>not</em> increase monotonically (finding flat profiles for both DE [4.40%, 4.29%, 4.48%, 4.38%, 4.10%] and PSD [3.84%, 4.39%, 4.29%, 4.13%, 4.31%]). Our baseline is genuinely decoding stimuli perception, not protocol artifacts.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>2. Preprocessing Data Leakage:</strong> We strictly audited train/test normalization leakage in standard pipelines. Sealing the leak caused an incredible <strong>13x reduction in cross-fold accuracy variance</strong> for PSD features, but actually increased DE feature fold-to-fold instability. This proved that strict leakage-free normalization impacts frequency and entropy domains entirely differently.</li>
-              <li><strong>3. Architectural Trade-offs:</strong> We prototyped a custom O(T^2) Temporal Attention model on raw 200Hz (T=400) signals, but found full temporal self-attention caused out-of-memory (OOM) errors. Moving forward, this directly motivates our proposed <strong>Chunk-Level Temporal EEG–Video Contrastive Alignment</strong>—we are pivoting to latency-aware contrastive alignment using frozen VideoMAE features to track within-clip temporal dynamics rather than static semantic priors.</li>
-            </ul>
+            <p>
+              We ran a three-part validity audit. First, we stratified Top-1 accuracy by clip position 1–5 and found perfectly flat profiles for both DE <code>[4.40%, 4.29%, 4.48%, 4.38%, 4.10%]</code> and PSD <code>[3.84%, 4.39%, 4.29%, 4.13%, 4.31%]</code> — no monotonic trend, no shortcut. Second, we sealed a data leakage bug in the normalization pipeline: for PSD features it caused a 13× reduction in cross-fold variance, confirming the leak was inflating apparent stability. Critically, it did <em>not</em> inflate mean accuracy — so the baseline is valid, just previously miscalibrated. Third, we tried raw 200Hz EEG with temporal self-attention (O(T²) at T=400) and hit OOM, which pointed us toward compressed features.
+            </p>
+            <p>
+              One positive finding from this phase: within-concept prediction consistency was <strong>24.3%</strong> vs. a random baseline of 17.8% (K=10 chunk window). The model is systematically coherent — when it's wrong, it tends to be wrong in the same direction within a concept block. That means the errors aren't random noise; they reflect genuine but confused semantic structure. This hinted there was real signal to find.
+            </p>
+            <p>
+              Conclusion: DE at <strong>4.37% ± 2.64%</strong> Top-1 is a clean, artifact-free baseline for 40-way concept classification. Now we could build on top of it.
+            </p>
+
+            <hr style="margin: 2rem 0; opacity:0.2;">
+
+            <!-- PHASE 2: NEUROCLIP -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">
+              <span style="opacity:0.5; font-weight:400; font-size:0.9rem; display:block; margin-bottom:0.2rem;">Phase 2 — Final Project</span>
+              What If We Replaced Supervised Labels with CLIP?
+            </h3>
+            <p>
+              That baseline used a supervised MLP — it needed concept labels at test time. We asked: what if the model never sees concept labels? Instead, align EEG to frozen CLIP embeddings, then retrieve at test time by cosine similarity to a gallery. That's zero-shot: no labels required, just a CLIP embedding for each concept.
+            </p>
+            <p>
+              We built <strong>NeuroCLIP</strong>: a lightweight CNN encoder that maps 62-channel × 5-band Differential Entropy features into a 512-D L2-normalized embedding space, trained with 40-way cross-entropy against a frozen CLIP gallery (image + text average — empirically the best combination). Leave-One-Block-Out 7-fold CV, 21 subjects, within-subject.
+            </p>
+            <p>
+              Result: <strong>4.60% ± 2.70%</strong> Top-1 R@1 — essentially matching our supervised DE baseline (4.37%) while requiring zero concept labels at test time. The zero-shot framing is the contribution: you can swap the CLIP gallery for any concept set without retraining.
+            </p>
+
+            <hr style="margin: 2rem 0; opacity:0.2;">
+
+            <!-- PHASE 3: THE DISCOVERY -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">
+              <span style="opacity:0.5; font-weight:400; font-size:0.9rem; display:block; margin-bottom:0.2rem;">Phase 3 — The Discovery</span>
+              Why Do Some Concepts Decode 2× Better Than Others?
+            </h3>
+            <p>
+              Once we had per-concept R@1 scores, the variance was striking — some concepts hit 10–15%, others sat near chance. We had 40 concepts and 21 subjects. The obvious hypothesis: <em>concepts that are more distinct in CLIP space should be easier to decode</em>.
+            </p>
+            <p>
+              We tested it. Per-concept CLIP isolation score vs. per-concept R@1: <strong>r = 0.036, p = 0.83 — completely null</strong>. CLIP geometry doesn't predict what the brain can decode. That was genuinely surprising and sent us back to look at the data differently.
+            </p>
+
+            <!-- Core figure -->
+            <figure style="margin: 1.5rem 0; text-align:center;">
+              <img src="final-project/EEG2Video/neuroclip/figures/F31_category_r1_analysis.png"
+                   alt="Category R@1 analysis: activity vs passive concepts"
+                   style="max-width:100%; border-radius:10px; border:1px solid rgba(0,0,0,.08); box-shadow: 0 4px 16px rgba(0,0,0,.07);"
+                   loading="lazy">
+              <figcaption style="margin-top:0.6rem; font-size:0.85rem; opacity:0.65;">
+                Activity concepts (Sports, Music, People) vs. passive concepts — a ~80% R@1 gap that holds across all 9 semantic categories.
+              </figcaption>
+            </figure>
+
+            <p>
+              We looked at semantic categories instead. SEED-DV has 9 groups: Animals, Nature, Food, Sports, Music, People, Vehicles, Urban, Other. When we split into <strong>Activity</strong> (Sports + Music + People: 9 concepts) vs. <strong>Passive</strong> (the remaining 31), the result was stark:
+            </p>
+
+            <div class="stats-strip" style="max-width:600px; margin: 1rem auto 1.5rem;">
+              <div class="stat-card" style="border-color: #fee2e2; background:#fff5f5;">
+                <div class="stat-label">Activity concepts</div>
+                <div class="stat-value" style="color:#dc2626;">6.8% R@1</div>
+              </div>
+              <div class="stat-card" style="border-color: #dbeafe; background:#eff6ff;">
+                <div class="stat-label">Passive concepts</div>
+                <div class="stat-value" style="color:#2563eb;">3.8% R@1</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Significance</div>
+                <div class="stat-value">t=6.72, p&lt;10⁻⁷</div>
+              </div>
+            </div>
+
+            <p>
+              People: 8.6%. Music: 6.5%. Sports: 6.1%. Nature: 3.2%. Food: 3.9%. The top three categories are all activities; the bottom three are all passive. And critically — activity concepts are <em>not</em> more CLIP-isolated. The effect is not explained by CLIP geometry.
+            </p>
+
+            <hr style="margin: 2rem 0; opacity:0.2;">
+
+            <!-- PHASE 4: ROBUSTNESS -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">
+              <span style="opacity:0.5; font-weight:400; font-size:0.9rem; display:block; margin-bottom:0.2rem;">Phase 4 — Ruling Out Alternatives</span>
+              Is This Just Louder EEG Signal?
+            </h3>
+            <p>
+              The obvious counter-argument: maybe activity videos just produce stronger EEG responses — higher amplitude — which makes them easier to classify. We went back to the raw DE values and ran t-tests on activity vs. passive concepts for every frequency band (delta, theta, alpha, beta, gamma). Every single band: <strong>p &gt; 0.05, not significant</strong>. Raw EEG amplitude does not differ between activity and passive concepts.
+            </p>
+            <p>
+              The advantage is in the <em>learned multi-channel representational pattern</em>, not signal strength. This points to action observation circuits — the premotor cortex, superior temporal sulcus, and mirror neuron system — producing more consistent, discriminable spatial patterns across subjects when viewing dynamic human action, which NeuroCLIP's contrastive training learns to exploit.
+            </p>
+
+            <!-- Session figure -->
+            <figure style="margin: 1.5rem 0; text-align:center;">
+              <img src="final-project/EEG2Video/neuroclip/figures/F46_session_category_interaction.png"
+                   alt="Session × category interaction: activity advantage holds across all 7 sessions"
+                   style="max-width:100%; border-radius:10px; border:1px solid rgba(0,0,0,.08); box-shadow: 0 4px 16px rgba(0,0,0,.07);"
+                   loading="lazy">
+              <figcaption style="margin-top:0.6rem; font-size:0.85rem; opacity:0.65;">
+                Activity &gt; Passive in all 7/7 recording sessions (mean gap +2.96 pp, p=0.0002***). The gap is stable — not a novelty effect.
+              </figcaption>
+            </figure>
+
+            <p>
+              We also checked whether the effect was a one-session fluke. Activity &gt; Passive in <strong>7 out of 7 sessions</strong>, mean gap +2.96 percentage points, p=0.0002***. No session × category interaction — the gap doesn't shrink over time.
+            </p>
+
+            <p>
+              And NeuroCLIP learned real semantic geometry: category centroids in EEG embedding space correlate with CLIP centroids at <strong>ρ = 0.645***</strong>. The model isn't encoding noise — it found the semantic structure of the 40-concept space.
+            </p>
+
+            <hr style="margin: 2rem 0; opacity:0.2;">
+
+            <!-- PHASE 5: IMPLICATION -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">
+              <span style="opacity:0.5; font-weight:400; font-size:0.9rem; display:block; margin-bottom:0.2rem;">Phase 5 — The Payoff</span>
+              A Design Principle That Actually Helps
+            </h3>
+            <p>
+              If CLIP geometry had driven decodability, the right move for a BCI lab would be: pick concepts that are maximally CLIP-isolated. We ran that optimization — predicted gain: <strong>+0.27 pp</strong>. Essentially nothing.
+            </p>
+            <p>
+              The right move is: pick activity concepts. Greedy top-10 by R@1 → <strong>6.97%</strong> vs. all-40 → 4.50%. That's <strong>+55% relative improvement, +2.47 pp</strong>. The top-10 are activity-skewed without exception: guitar, boxing, drums, dancing, running, skiing, construction, crowd, piano, computer.
+            </p>
+
+            <!-- Optimal subset figure -->
+            <figure style="margin: 1.5rem 0; text-align:center;">
+              <img src="final-project/EEG2Video/neuroclip/figures/F34_optimal_concept_subset.png"
+                   alt="Optimal concept subset selection: activity-skewed top-10 yields +55% R@1"
+                   style="max-width:100%; border-radius:10px; border:1px solid rgba(0,0,0,.08); box-shadow: 0 4px 16px rgba(0,0,0,.07);"
+                   loading="lazy">
+              <figcaption style="margin-top:0.6rem; font-size:0.85rem; opacity:0.65;">
+                Top-K concept selection by R@1: activity-skewed subsets consistently outperform random and CLIP-optimized baselines.
+              </figcaption>
+            </figure>
+
+            <div class="note-card" style="margin-top:1.5rem;">
+              <p style="margin:0;">
+                <strong>Actionable recommendation:</strong> For any EEG-BCI lab designing a stimulus library — prioritize dynamic human action scenes over static object images. The gain comes not from your model architecture or your CLIP gallery, but from how consistently the human brain encodes action concepts across subjects and sessions.
+              </p>
+            </div>
+
+            <hr style="margin: 2rem 0; opacity:0.2;">
+
+            <!-- WHAT WE EXPLORED -->
+            <h3 class="title is-4" style="margin-bottom:0.75rem;">What We Explored (47 Figures, 45 Scripts)</h3>
+            <p>
+              Beyond the core story, we ran extensive supporting analyses to validate every step: confusion matrix structure (within-category errors dominate), CLIP modality ablation (image+text &gt; image-only or text-only), retrieval at R@1/R@5/MRR, frequency band ablation (theta removal hurts most), brain region ablation (parietal and occipital regions most important), subject scaling curves (flat — individual fingerprints dominate, not data quantity), inter-subject consistency, noise ceiling estimation (18.1% of a 58.9% RSA ceiling — large room to grow), and cross-metric Spearman correlation across all per-concept metrics.
+            </p>
+            <p>
+              Most of these are robustness checks that didn't change the conclusion — but running them meant we could answer every possible "but what if…" question. That's the lab notebook philosophy: explore widely, report tightly.
+            </p>
+
+            <div style="margin-top:1.5rem; text-align:center;">
+              <a href="https://github.com/winstonqian/EEG2Video/tree/master/neuroclip" target="_blank" rel="noopener" class="button is-outlined is-rounded" style="border-color:#2563eb; color:#2563eb;">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>View all analyses on GitHub</span>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
@@ -462,7 +645,17 @@
           <!-- NOTE: Use a unique id (don’t reuse results-carousel elsewhere on the page) -->
           <div id="highlights-carousel" class="carousel results-carousel">
     
-            <!-- HW1: TVQA Preprocessing -->
+            <!-- Final Project: NeuroCLIP -->
+            <div class="item">
+              <img src="final-project/EEG2Video/neuroclip/figures/F31_category_r1_analysis.png"
+                   alt="NeuroCLIP: Action semantics governs EEG concept decodability" loading="lazy"
+                   style="border-radius:8px;"/>
+              <h2 class="subtitle has-text-centered">
+                Final Project — NeuroCLIP: Activity concepts decode 80% better than passive ones
+              </h2>
+            </div>
+
+          <!-- HW1: TVQA Preprocessing -->
             <div class="item">
               <img src="https://nlp.cs.unc.edu/data/jielei/tvqa/tvqa_public_html/img/tvqa_qa_example.png" alt="Homework 1: Multimodal TVQA Preprocessing" loading="lazy"/>
               <h2 class="subtitle has-text-centered">
