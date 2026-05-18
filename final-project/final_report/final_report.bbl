@@ -1,0 +1,172 @@
+\begin{thebibliography}{18}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahmed et~al.(2021)Ahmed, Wilbur, Bharadwaj, and
+  Siskind]{ahmed2021object}
+Hamad Ahmed, Ronnie~B. Wilbur, Hari~M. Bharadwaj, and Jeffrey~Mark Siskind.
+\newblock Object classification from randomized {EEG} trials.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 3845--3854, 2021.
+\newblock URL
+  \url{https://openaccess.thecvf.com/content/CVPR2021/html/Ahmed_Object_Classification_From_Randomized_EEG_Trials_CVPR_2021_paper.html}.
+
+\bibitem[Chen et~al.(2023)Chen, Qing, and Zhou]{chen2023cinematic}
+Zijiao Chen, Jiaxin Qing, and Juan~Helen Zhou.
+\newblock Cinematic mindscapes: High-quality video reconstruction from brain
+  activity, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.11675}.
+
+\bibitem[Fei et~al.(2024)Fei, Ravishankar, Chen, Uppal, Jackson, and
+  de~Sa]{fei2025perceptogram}
+Teng Fei, Srinivas Ravishankar, Zhining Chen, Abhinav Uppal, Ian Jackson, and
+  Virginia~R. de~Sa.
+\newblock Perceptogram: Reconstructing visual percepts and presumptive
+  electrode preference from {EEG}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.01250}.
+
+\bibitem[Kutas and Federmeier(2011)]{kutas2011thirty}
+Marta Kutas and Kara~D. Federmeier.
+\newblock Thirty years and counting: Finding meaning in the {N400} component of
+  the event-related brain potential.
+\newblock \emph{Annual Review of Psychology}, 62:\penalty0 621--647, 2011.
+\newblock \doi{10.1146/annurev.psych.093008.131123}.
+\newblock URL
+  \url{https://www.annualreviews.org/doi/10.1146/annurev.psych.093008.131123}.
+
+\bibitem[Li et~al.(2024)Li, Wei, Li, Zou, and Liu]{li2024visual}
+Dongyang Li, Chen Wei, Shiying Li, Jiachen Zou, and Quanying Liu.
+\newblock Visual decoding and reconstruction via {EEG} embeddings with guided
+  diffusion.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37, 2024.
+\newblock \doi{10.52202/079017-3266}.
+\newblock URL
+  \url{https://papers.nips.cc/paper_files/paper/2024/hash/ba5f1233efa77787ff9ec015877dbd1f-Abstract-Conference.html}.
+
+\bibitem[Li et~al.(2021)Li, Johansen, Ahmed, Ilyevsky, Wilbur, Bharadwaj, and
+  Siskind]{li2021perils}
+Rui Li, Joshua~S. Johansen, Hassaan Ahmed, T.~V. Ilyevsky, Ronnie~B. Wilbur,
+  Hari~M. Bharadwaj, and Jeffrey~M. Siskind.
+\newblock The perils and pitfalls of block design for {EEG} classification
+  experiments.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 43\penalty0 (1):\penalty0 316--333, 2021.
+\newblock \doi{10.1109/TPAMI.2020.2973153}.
+\newblock URL \url{https://ieeexplore.ieee.org/document/9264220}.
+
+\bibitem[Liu et~al.(2025)Liu, Lin, Li, and Li]{dynamind2025}
+Junxiang Liu, Junming Lin, Jiangtong Li, and Jie Li.
+\newblock {DynaMind}: Reconstructing dynamic visual scenes from {EEG} by
+  aligning temporal dynamics and multimodal semantics to guided diffusion,
+  2025.
+\newblock URL \url{https://arxiv.org/abs/2509.01177}.
+
+\bibitem[Liu et~al.(2024)Liu, Liu, Wang, Ren, Shi, Wang, Li, Lu, and
+  Zheng]{liu2024eeg2video}
+Xuan-Hao Liu, Yan-Kai Liu, Yansen Wang, Kan Ren, Hanwen Shi, Zilong Wang,
+  Dongsheng Li, Bao-Liang Lu, and Wei-Long Zheng.
+\newblock {EEG2Video}: Towards decoding dynamic visual perception from {EEG}
+  signals.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37, 2024.
+\newblock \doi{10.52202/079017-2306}.
+\newblock URL
+  \url{https://papers.nips.cc/paper_files/paper/2024/hash/84bad835faaf48f24d990072bb5b80ee-Abstract-Conference.html}.
+
+\bibitem[Luck(2014)]{luck2014erp}
+Steven~J. Luck.
+\newblock \emph{An Introduction to the Event-Related Potential Technique}.
+\newblock MIT Press, 2 edition, 2014.
+\newblock ISBN 9780262525855.
+\newblock URL
+  \url{https://mitpress.mit.edu/9780262525855/an-introduction-to-the-event-related-potential-technique/}.
+
+\bibitem[Ozcelik and VanRullen(2023)]{ozcelik2023natural}
+Furkan Ozcelik and Rufin VanRullen.
+\newblock Natural scene reconstruction from {fMRI} signals using generative
+  latent diffusion.
+\newblock \emph{Scientific Reports}, 13\penalty0 (15666), 2023.
+\newblock \doi{10.1038/s41598-023-42891-8}.
+\newblock URL \url{https://www.nature.com/articles/s41598-023-42891-8}.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever]{radford2021clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, pages 8748--8763, 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/radford21a.html}.
+
+\bibitem[Sakoe and Chiba(1978)]{sakoe1978dtw}
+Hiroaki Sakoe and Seibi Chiba.
+\newblock Dynamic programming algorithm optimization for spoken word
+  recognition.
+\newblock \emph{IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  26\penalty0 (1):\penalty0 43--49, 1978.
+\newblock \doi{10.1109/TASSP.1978.1163055}.
+
+\bibitem[Scotti et~al.(2024)Scotti, Tripathy, Villanueva, Kneeland, Chen,
+  Narang, Santhirasegaran, Xu, Naselaris, Norman, and
+  Abraham]{scotti2024mindeye}
+Paul~S. Scotti, Mihir Tripathy, Cesar Kadir~Torrico Villanueva, Reese Kneeland,
+  Tong Chen, Ashutosh Narang, Charan Santhirasegaran, Jonathan Xu, Thomas
+  Naselaris, Kenneth~A. Norman, and Tanishq~Mathew Abraham.
+\newblock {MindEye2}: Shared-subject models enable fmri-to-image with 1 hour of
+  data, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.11207}.
+
+\bibitem[Takagi and Nishimoto(2023)]{takagi2023highres}
+Yu~Takagi and Shinji Nishimoto.
+\newblock High-resolution image reconstruction with latent diffusion models
+  from human brain activity.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 14453--14463, 2023.
+\newblock \doi{10.1109/CVPR52729.2023.01389}.
+\newblock URL
+  \url{https://openaccess.thecvf.com/content/CVPR2023/html/Takagi_High-Resolution_Image_Reconstruction_With_Latent_Diffusion_Models_From_Human_Brain_CVPR_2023_paper.html}.
+
+\bibitem[Tong et~al.(2022)Tong, Song, Wang, and Wang]{tong2022videomae}
+Zhan Tong, Yibing Song, Jue Wang, and Limin Wang.
+\newblock {VideoMAE}: Masked autoencoders are data-efficient learners for
+  self-supervised video pre-training.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, 2022.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/416f9cb3276121c42eebb86352a4354a-Abstract-Conference.html}.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html}.
+
+\bibitem[Xu et~al.(2021)Xu, Ghosh, Huang, Okhonko, Aghajanyan, Metze,
+  Zettlemoyer, and Feichtenhofer]{xu2021videoclip}
+Hu~Xu, Gargi Ghosh, Po-Yao Huang, Dmytro Okhonko, Armen Aghajanyan, Florian
+  Metze, Luke Zettlemoyer, and Christoph Feichtenhofer.
+\newblock {VideoCLIP}: Contrastive pre-training for zero-shot video-text
+  understanding.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}, pages 6787--6800. Association for Computational
+  Linguistics, 2021.
+\newblock \doi{10.18653/v1/2021.emnlp-main.544}.
+\newblock URL \url{https://aclanthology.org/2021.emnlp-main.544/}.
+
+\bibitem[Zhou et~al.(2026)Zhou, Liu, Lu, and Zheng]{zhou2026mindcine}
+Tian-Yi Zhou, Xuan-Hao Liu, Bao-Liang Lu, and Wei-Long Zheng.
+\newblock {MindCine}: Multimodal {EEG}-to-video reconstruction with large-scale
+  pretrained models, 2026.
+\newblock URL \url{https://arxiv.org/abs/2601.18192}.
+
+\end{thebibliography}
