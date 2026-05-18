@@ -7,26 +7,39 @@ This repository is a living lab notebook: homework, experiments, and a final pro
 
 ---
 
-## Final Project — NeuroCLIP
+## Final Project — NeuroCLIP + LATA
 
-**[NeuroCLIP: Action Semantics Governs EEG Concept Decodability](./final-project/)**  
+**[Action Semantics and Latency-Aware Alignment for EEG-to-Video Decoding](./final-project/)**  
 *Winston Qian · Rachel Li · Emma Wang*
 
-> In contrastive EEG-to-CLIP retrieval, concept decodability is not determined by CLIP embedding geometry — it is determined by **action semantic content**. Dynamic human activity concepts are decoded with ~80% higher accuracy than passive object scenes (6.8% vs. 3.8%, p < 10⁻⁷), consistently across all 7 recording sessions and all subjects. This is not a raw EEG amplitude effect — it is a dataset-agnostic principle for designing more decodable BCI stimulus sets.
+> EEG-to-video decoding should not be evaluated only by aggregate accuracy. On
+> SEED-DV, we show that concept decodability is **semantic** and **delayed**:
+> activity-rich concepts are much easier to decode than passive scenes, while
+> learned EEG-video alignment consistently avoids zero lag.
 
 ### What we built
-- **NeuroCLIP**: lightweight CNN encoder mapping 62-channel × 5-band DE features → 512-D CLIP-aligned embeddings, trained with 40-way contrastive loss against a frozen CLIP gallery (zero-shot at test time)
-- **4.60% ± 2.70% Top-1 R@1** on 40-way concept retrieval — matching the supervised DE baseline (4.37%) without any concept labels at test time
-- **47 analysis figures, 45 scripts** — frequency band ablation, brain region ablation, category centroid RSA, session × category interaction, subject scaling, optimal stimulus design, and more
+- **Baseline audit**: reproduced EEG2Video-style within-subject concept
+  classification and checked normalization leakage, run-position shortcuts, and
+  within-concept consistency.
+- **NeuroCLIP**: CLIP-aligned EEG concept retrieval probe for asking which
+  SEED-DV concepts are decodable and why.
+- **LATA**: latency-aware temporal alignment module that learns a soft
+  distribution over EEG-video delay during contrastive chunk training.
 
-### The story in 5 steps
-1. **Baseline audit**: confirmed no run-position artifacts, no data-leak inflation, and 24.3% within-concept consistency vs. 17.8% random — genuine semantic signal
-2. **Built NeuroCLIP**: zero-shot CLIP-aligned EEG retrieval, competitive with supervised baselines
-3. **CLIP geometry null**: per-concept CLIP isolation → per-concept R@1: r = 0.036, p = 0.83 (not significant)
-4. **Action semantics finding**: Activity concepts 6.8% vs. Passive 3.8% (p < 10⁻⁷, 7/7 sessions, not an amplitude effect)
-5. **Design principle**: activity-selected top-10 concepts → 6.97% R@1 (+55% relative over all-40)
+### Key results
+- **NeuroCLIP Recall@1**: 4.60% ± 2.70%, comparable to the supervised DE
+  baseline at 4.37% ± 2.64%.
+- **CLIP geometry null**: per-concept CLIP isolation does not predict EEG
+  decodability (r = 0.036, p = 0.827).
+- **Action semantics finding**: activity-rich concepts decode better than
+  passive concepts (6.79% vs. 3.83%, t = 6.72, p = 5.95e-8).
+- **Latency finding**: LATA learns nonzero delay for every subject; 14/20 peak
+  at δ=2, 6/20 peak at δ=1, and none peak at zero lag.
+- **Expected delay**: 1.58 ± 0.05 chunks, approximately 790 ms.
 
-📁 [Code + all figures](./final-project/EEG2Video/neuroclip/)
+📁 [Final project overview](./final-project/)  
+📄 [Final report source](./final-project/final_report/)  
+🧠 [EEG2Video / NeuroCLIP / LATA code](./final-project/EEG2Video/)
 
 ---
 
