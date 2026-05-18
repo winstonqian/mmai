@@ -50,8 +50,8 @@ This repository is a living lab notebook: homework, experiments, and a final pro
 | [HW1](./homework/homework-1/) | Dataset | Multimodal TVQA Preprocessing — extracting visual, textual, and temporal modalities |
 | [HW2](./homework/homework-2/) | Fusion | Multimodal Fusion & Alignment — early/late/tensor fusion + contrastive learning on TVQA |
 | [HW3](./homework/homework-3/) | VLM | VLM Fine-Tuning — Qwen2.5-VL with LoRA for zero-shot action reasoning on TVQA |
-| HW4 | TBD | — |
-| HW5 | TBD | — |
+| [HW4](./homework/homework-4/) | RLHF / GRPO | Reinforcement Learning for VLMs — GRPO + LoRA on TVQA with accuracy and format rewards |
+| [HW5](./homework/homework-5/) | Agents | AI Agents in the Wild — ReAct-style Wikipedia research agent with custom tools and evaluation |
 
 ---
 
